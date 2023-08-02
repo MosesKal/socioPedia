@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import mongoose from "body-parser";
+import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import multer from "multer";
@@ -40,10 +40,11 @@ const upload = multer({ storage });
 /** MONGOOSE SETUP  */
 
 const PORT = process.env.PORT || 6001;
+
 mongoose
   .connect(process.env.MONGO_URL, {
-    userNewUrlParse: true,
-    userUnifiedTopology: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port : ${PORT}`));
